@@ -13,7 +13,7 @@ SOURCE_URL = https://ftp.gnu.org/gnu/$(PACKAGE)/$(PACKAGE)-$(PACKAGE_VERSION).ta
 SOURCE_PATH = /tmp/source
 SOURCE_TARBALL = /tmp/source.tar.gz
 
-PATH_FLAGS = --prefix=$(RELEASE_DIR) --bindir=$(RELEASE_DIR)/usr/bin --libdir=/tmp/trash
+PATH_FLAGS = --prefix=$(RELEASE_DIR) --bindir=$(RELEASE_DIR)/usr/bin --libdir=/tmp/trash --mandir=$(RELEASE_DIR)/usr/share/man --infodir=/tmp/trash
 CFLAGS = -static -static-libgcc -Wl,-static -lc
 
 .PHONY : default source manual container build version push local
