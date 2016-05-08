@@ -13,8 +13,8 @@ SOURCE_URL = https://ftp.gnu.org/gnu/$(PACKAGE)/$(PACKAGE)-$(PACKAGE_VERSION).ta
 SOURCE_PATH = /tmp/source
 SOURCE_TARBALL = /tmp/source.tar.gz
 
-PATH_FLAGS = --prefix=$(RELEASE_DIR) --bindir=$(RELEASE_DIR)/usr/bin --libdir=/tmp/trash --mandir=$(RELEASE_DIR)/usr/share/man --infodir=/tmp/trash
-CFLAGS = -static -static-libgcc -Wl,-static -lc
+PATH_FLAGS = --prefix=/usr
+CFLAGS =
 
 .PHONY : default source manual container build version push local
 
@@ -36,7 +36,7 @@ build: source
 	rm -rf $(BUILD_DIR)
 	cp -R $(SOURCE_PATH) $(BUILD_DIR)
 	cd $(BUILD_DIR) && CC=musl-gcc CFLAGS='$(CFLAGS)' ./configure $(PATH_FLAGS)
-	cd $(BUILD_DIR) && make install
+	cd $(BUILD_DIR) && make DESTDIR=$(RELEASE_DIR) install
 	mkdir -p $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)
 	cp $(BUILD_DIR)/COPYING $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)/LICENSE
 	cd $(RELEASE_DIR) && tar -czvf $(RELEASE_FILE) *
