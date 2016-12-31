@@ -3,11 +3,6 @@ org 'amylum'
 
 licenses 'COPYING'
 
-source(
-  type: 'tar',
-  url: 'https://ftp.gnu.org/gnu/sed/sed-4.3.tar.gz'
-)
-
 configure_flags(
   prefix: '/usr'
 )
@@ -15,6 +10,7 @@ configure_flags(
 harden
 
 build do
+  run './bootstrap'
   configure
   make
   install
