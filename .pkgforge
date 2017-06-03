@@ -14,6 +14,7 @@ build do
   configure
   make
   install
+  rm 'usr/lib/charset.alias'
 end
 
 test do
