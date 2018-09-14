@@ -8,6 +8,9 @@ configure_flags(
 )
 
 harden
+cflags([
+  '-Wno-error=abi'
+])
 
 build do
   run './bootstrap'
